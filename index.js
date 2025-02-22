@@ -37,8 +37,6 @@ function nextSequence() {
     gamePattern.push(randomChosenColor);
   }
 
-  console.log(gamePattern);
-
   // animate level
   animateRound();
 
@@ -60,15 +58,15 @@ function checkAnswer() {
         console.log("Success");
         gamePattern = [];
         userClickedPattern = [];
-        $(document).addClass("correct-answer");
-        $(document).delay(100).removeClass("correct-answer");
+        $("body").addClass("correct-answer");
+        $("body").delay(500).removeClass("correct-answer");
 
         // next level
         nextSequence();
       } else {
         console.log("Wrong");
         $("#level-title").text("Game Over, Press Any Key to Restart");
-        $(document).addClass("game-over");
+        $("body").addClass("game-over");
         playSound("wrong");
         startOver();
 
