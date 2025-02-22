@@ -74,10 +74,9 @@ function checkAnswer() {
         clearInterval(interval);
       }
     }
-  }, 500); // Check every second
-
-  // Reset interval when needed (you can adjust the check frequency)
+  }, 500);
 }
+
 function startOver() {
   level = 1;
   gamePattern = [];
@@ -114,5 +113,3 @@ function playSound(name) {
   var audio = new Audio(`./sounds/${name}.mp3`);
   audio.play();
 }
-
-console.log(gamePattern);
