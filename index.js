@@ -12,6 +12,9 @@ $(document).on("keypress", (e) => {
       checkAnswer();
       started = true;
     }
+  } else {
+    startOver();
+    nextSequence();
   }
 });
 
@@ -37,6 +40,8 @@ function nextSequence() {
     gamePattern.push(randomChosenColor);
   }
 
+  console.log(gamePattern);
+
   // animate level
   animateRound();
 
@@ -59,7 +64,10 @@ function checkAnswer() {
         gamePattern = [];
         userClickedPattern = [];
         $("body").addClass("correct-answer");
-        $("body").delay(500).removeClass("correct-answer");
+
+        setTimeout(() => {
+          $("body").removeClass("correct-answer");
+        }, 500);
 
         // next level
         nextSequence();
@@ -67,14 +75,22 @@ function checkAnswer() {
         console.log("Wrong");
         $("#level-title").text("Game Over, Press Any Key to Restart");
         $("body").addClass("game-over");
+        setTimeout(() => {
+          $("body").removeClass("game-over");
+        }, 1000);
         playSound("wrong");
-        startOver();
 
         // Clear the interval on failure
         clearInterval(interval);
       }
     }
   }, 500);
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
 }
 
 function startOver() {
